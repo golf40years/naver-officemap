@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JAPAN 출장자 가이드</title>
+<title>Global 출장자 가이드</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap');
   :root {
@@ -24,15 +24,9 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans KR','Noto Sans JP','Segoe UI',sans-serif; background: #f5f6f8; color: var(--gray1); font-size: 14px; }
   header {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    height: 56px;
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    justify-content: space-between;
-    position: sticky; top: 0; z-index: 200;
-    box-shadow: var(--shadow);
+    background: var(--white); border-bottom: 1px solid var(--border); height: 56px;
+    display: flex; align-items: center; padding: 0 24px; justify-content: space-between;
+    position: sticky; top: 0; z-index: 200; box-shadow: var(--shadow);
   }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-mark {
@@ -65,6 +59,7 @@
   .office-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
   .office-tab .bldg { font-size: 11px; color: var(--gray4); font-weight: 400; }
   .office-tab.active .bldg { color: var(--primary); opacity: .7; }
+  .office-tab .flag { font-size: 16px; }
   .hero { background: var(--white); border-bottom: 1px solid var(--border); padding: 32px 24px 28px; }
   .hero-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
   .hero-left h1 { font-size: 22px; font-weight: 700; color: var(--gray1); line-height: 1.3; }
@@ -115,10 +110,6 @@
   .info-item { background: var(--gray5); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
   .info-item .lbl { font-size: 10px; color: var(--gray3); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
   .info-item .val { font-size: 13px; font-weight: 600; color: var(--gray1); line-height: 1.5; }
-  .notice {
-    background: var(--primary-light); border: 1px solid #b3e8cc; border-radius: 8px; padding: 12px 16px;
-    font-size: 12px; color: #1a6b3c; line-height: 1.7; display: flex; gap: 10px;
-  }
   .warn {
     background: #fffbe6; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px;
     font-size: 12px; color: #7a5c00; line-height: 1.7; display: flex; gap: 10px;
@@ -131,8 +122,8 @@
   .c-val { font-size: 13px; font-weight: 600; color: var(--gray1); }
   .c-val a { color: var(--primary-dark); text-decoration: none; }
   .c-val a:hover { text-decoration: underline; }
-  .placeholder { padding: 32px; text-align: center; color: var(--gray4); font-size: 13px; }
-  .placeholder .big { font-size: 32px; margin-bottom: 8px; }
+  .placeholder { padding: 48px 32px; text-align: center; color: var(--gray3); font-size: 14px; line-height: 1.8; }
+  .placeholder .big { font-size: 40px; margin-bottom: 12px; }
   footer { text-align: center; padding: 24px; color: var(--gray4); font-size: 11px; border-top: 1px solid var(--border); background: var(--white); margin-top: 24px; }
   .lang-section { display: none; }
   .lang-section.active { display: block; }
@@ -144,7 +135,7 @@
 <header>
   <div class="logo">
     <div class="logo-mark">N</div>
-    <div class="logo-text">JAPAN <span>출장자 가이드</span></div>
+    <div class="logo-text">Global <span>출장자 가이드</span></div>
   </div>
   <div class="header-right">
     <button class="lang-btn active" onclick="setLang('ko',this)">한국어</button>
@@ -153,13 +144,21 @@
   </div>
 </header>
 <nav class="office-nav" id="office-nav">
-  <button class="office-tab active" onclick="setOffice('ldf',this)">🏢 LINE Digital Frontier <span class="bldg">Roppongi Midtown</span></button>
-  <button class="office-tab" onclick="setOffice('basecamp',this)">🏨 BASECAMP TOKYO <span class="bldg">Meguro</span></button>
-  <button class="office-tab" onclick="setOffice('lw',this)">💼 LINE Works <span class="bldg">Shibuya Sakura Stage</span></button>
-  <button class="office-tab" onclick="setOffice('nz',this)">📸 NAVER Z / SNOW <span class="bldg">Ōsaki Garden Tower</span></button>
+  <button class="office-tab active" onclick="setOffice('gf',this)"><span class="flag">🇰🇷</span> Green Factory <span class="bldg">Bundang</span></button>
+  <button class="office-tab" onclick="setOffice('la',this)"><span class="flag">🇺🇸</span> WEBTOON Entertainment <span class="bldg">LA</span></button>
+  <button class="office-tab" onclick="setOffice('wp',this)"><span class="flag">🇨🇦</span> Wattpad <span class="bldg">Toronto</span></button>
+  <button class="office-tab" onclick="setOffice('ldf',this)"><span class="flag">🇯🇵</span> LINE Digital Frontier <span class="bldg">Roppongi</span></button>
+  <button class="office-tab" onclick="setOffice('lw',this)"><span class="flag">🇯🇵</span> LINE Works <span class="bldg">Shibuya</span></button>
+  <button class="office-tab" onclick="setOffice('nz',this)"><span class="flag">🇯🇵</span> NAVER Z / SNOW <span class="bldg">Ōsaki</span></button>
+  <button class="office-tab" onclick="setOffice('basecamp',this)"><span class="flag">🇯🇵</span> Basecamp Tokyo <span class="bldg">Meguro</span></button>
+  <button class="office-tab" onclick="setOffice('co',this)"><span class="flag">🇰🇷</span> Connectone <span class="bldg">Chuncheon</span></button>
+  <button class="office-tab" onclick="setOffice('id',this)"><span class="flag">🇮🇩</span> Indonesia</button>
+  <button class="office-tab" onclick="setOffice('th',this)"><span class="flag">🇹🇭</span> Thailand</button>
+  <button class="office-tab" onclick="setOffice('tw',this)"><span class="flag">🇹🇼</span> Taiwan</button>
 </nav>
+
 <!-- ===== LDF ===== -->
-<div id="office-ldf" class="office-section active">
+<div id="office-ldf" class="office-section">
   <div id="ldf-ko" class="lang-section active">
     <div class="hero">
       <div class="hero-inner">
@@ -192,7 +191,7 @@
         <div class="card-head"><div class="ico">🏢</div><h2>건물 입장 안내</h2><span class="badge">※ 22시~6시 새벽 기준</span></div>
         <div class="card-body">
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F 또는 B1F · 24시간</div><strong>QR코드로 미드타운 빌딩 입장</strong><p>새벽(22시~6시): 가장 오른쪽 문 옆 단말기에 QR코드 터치 / 퇴관: 문 아래 잠금장치 해제</p></div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F 또는 B1F · 24시간</div><strong>QR코드로 미드타운 빌딩 입장</strong><p>새벽(22시~6시): QR코드 입관 불가 / 퇴관: 문 아래 잠금장치 해제</p></div></div>
             <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">엘리베이터 B</div><strong>엘리베이터 B로 11F 또는 12F 이동</strong></div></div>
             <div class="step"><div class="step-num">3</div><div class="step-content"><div class="tag">새벽 출입구 제한</div><strong>새벽에는 지정 출입구 1곳만 이용 가능</strong><p>11F: 여성 화장실 근처 출입구 / 12F: 중앙 출입구</p></div></div>
           </div>
@@ -219,6 +218,15 @@
         </div>
       </div>
       <div class="card">
+        <div class="card-head"><div class="ico">📄</div><h2>상세 안내 문서</h2></div>
+        <div class="card-body" style="padding:16px 20px;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="map-btn" href="https://webtoon.enterprise.slack.com/docs/T09UMMYNR/F09BXNM7T9P" target="_blank" style="display:inline-flex; background:#4A154B;">📄 출장자 안내 문서 ①</a>
+            <a class="map-btn" href="https://webtoon.enterprise.slack.com/docs/T09UMMYNR/F09N8K9KYD6" target="_blank" style="display:inline-flex; background:#4A154B;">📄 출장자 안내 문서 ②</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
         <div class="card-head"><div class="ico">🍽</div><h2>LDF 직원 추천 도쿄 맛집</h2></div>
         <div class="card-body" style="text-align:center; padding:24px 20px;">
           <p style="font-size:13px; color:var(--gray2); margin-bottom:14px;">LDF 직원들이 직접 다녀온 맛집 리스트입니다.<br>Google Maps에서 위치와 리뷰를 확인하세요!</p>
@@ -238,10 +246,19 @@
         <div class="step"><div class="step-num">④</div><div class="step-content"><div class="tag">東京メトロ南北線</div><strong>六本木一丁目駅 1番出口 → 徒歩約10分</strong></div></div>
       </div></div></div>
       <div class="card"><div class="card-head"><div class="ico">🏢</div><h2>入館案内</h2><span class="badge">※深夜22時〜6時</span></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F または B1F</div><strong>QRコードで入館</strong><p>深夜は一番右のドア横端末にタッチ。退館: ドア下の鍵を解錠</p></div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F または B1F</div><strong>QRコードで入館</strong><p>深夜はQRコードでの入館は不可。退館: ドア下の鍵を解錠</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">エレベーターB</div><strong>エレベーターBで11Fまたは12Fへ</strong></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-content"><div class="tag">深夜入口制限</div><strong>深夜は指定の入口1か所のみ</strong><p>11F: 女性トイレ近くの入口 / 12F: 中央入口</p></div></div>
       </div></div></div>
+      <div class="card">
+        <div class="card-head"><div class="ico">📄</div><h2>詳細案内ドキュメント</h2></div>
+        <div class="card-body" style="padding:16px 20px;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="map-btn" href="https://webtoon.enterprise.slack.com/docs/T09UMMYNR/F09BXNM7T9P" target="_blank" style="display:inline-flex; background:#4A154B;">📄 出張者案内 ①</a>
+            <a class="map-btn" href="https://webtoon.enterprise.slack.com/docs/T09UMMYNR/F09N8K9KYD6" target="_blank" style="display:inline-flex; background:#4A154B;">📄 出張者案内 ②</a>
+          </div>
+        </div>
+      </div>
       <div class="card">
         <div class="card-head"><div class="ico">🍽</div><h2>LDF社員おすすめ 東京グルメ</h2></div>
         <div class="card-body" style="text-align:center; padding:24px 20px;">
@@ -262,10 +279,19 @@
         <div class="step"><div class="step-num">④</div><div class="step-content"><div class="tag">Tokyo Metro Nanboku Line</div><strong>Roppongi-itchome Stn Exit 1 → 10 min walk</strong></div></div>
       </div></div></div>
       <div class="card"><div class="card-head"><div class="ico">🏢</div><h2>Building Entry</h2><span class="badge">※ Late night 22:00–6:00</span></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F or B1F · 24hrs</div><strong>Enter with QR Code</strong><p>After 22:00: tap QR at rightmost door terminal. Exit: unlock latch at door bottom.</p></div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F or B1F · 24hrs</div><strong>Enter with QR Code</strong><p>After 22:00: QR code entry not available. Exit: unlock latch at door bottom.</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">Elevator B</div><strong>Take Elevator B to 11F or 12F</strong></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-content"><div class="tag">Limited Entry after 22:00</div><strong>Only 1 entrance per floor available</strong><p>11F: near women's restroom / 12F: central entrance</p></div></div>
       </div></div></div>
+      <div class="card">
+        <div class="card-head"><div class="ico">📄</div><h2>Detailed Guides</h2></div>
+        <div class="card-body" style="padding:16px 20px;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="map-btn" href="https://webtoon.enterprise.slack.com/docs/T09UMMYNR/F09BXNM7T9P" target="_blank" style="display:inline-flex; background:#4A154B;">📄 Visitor Guide ①</a>
+            <a class="map-btn" href="https://webtoon.enterprise.slack.com/docs/T09UMMYNR/F09N8K9KYD6" target="_blank" style="display:inline-flex; background:#4A154B;">📄 Visitor Guide ②</a>
+          </div>
+        </div>
+      </div>
       <div class="card">
         <div class="card-head"><div class="ico">🍽</div><h2>LDF Staff Picks: Tokyo Restaurants</h2></div>
         <div class="card-body" style="text-align:center; padding:24px 20px;">
@@ -276,6 +302,7 @@
     </div>
   </div>
 </div>
+
 <!-- ===== BASECAMP ===== -->
 <div id="office-basecamp" class="office-section">
   <div id="basecamp-ko" class="lang-section active">
@@ -351,6 +378,7 @@
     </div>
   </div>
 </div>
+
 <!-- ===== LINE WORKS ===== -->
 <div id="office-lw" class="office-section">
   <div id="lw-ko" class="lang-section active">
@@ -389,6 +417,7 @@
     </div>
   </div>
 </div>
+
 <!-- ===== NAVER Z / SNOW ===== -->
 <div id="office-nz" class="office-section">
   <div id="nz-ko" class="lang-section active">
@@ -422,9 +451,221 @@
     </div>
   </div>
 </div>
-<footer>© 2026 NAVER / LINE Digital Frontier · JAPAN 출장자 가이드</footer>
+
+<!-- ===== 그린팩토리 ===== -->
+<div id="office-gf" class="office-section active">
+  <div id="gf-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER 그린팩토리<br><span class="en">Green Factory</span></h1><div class="sub">경기도 성남시 분당구 · 정자동</div><div class="addr-pill">📍 경기도 성남시 분당구 불정로 6 (정자동)</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.5!2d127.1052!3d37.3595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b58f2b1e75d11%3A0x9a87e641b2e7c67c!2sNAVER+Green+Factory!5e0!3m2!1sko!2skr" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div><div class="tag">김포공항</div><strong>9호선 → 신논현역 → 신분당선 정자역</strong><p>김포공항역에서 9호선(급행) 탑승 → 신논현역 하차 → 신분당선 환승 → 정자역 하차<br>총 소요 약 70분</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">인천공항</div><strong>AREX 직통 → 서울역 → 강남역 → 신분당선 정자역</strong><p>AREX 직통열차 → 서울역 (약 43분) → 2호선 강남역 → 신분당선 정자역<br>총 소요 약 90~105분 · 신분당선 별도 요금</p></div></div>
+        <div class="step"><div class="step-num">③</div><div class="step-content"><div class="tag">정자역에서 도보</div><strong>정자역 3번 출구 → 도보 약 8~10분</strong><p>3번 출구 직진 → 불정교 사거리에서 우회전 → 약 200m 직진 → 좌측 그린팩토리<br>※ 한국에서는 네이버 지도 또는 카카오맵 사용 권장</p></div></div>
+      </div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">ℹ</div><h2>기본 정보</h2></div><div class="card-body"><div class="info-grid">
+        <div class="info-item"><div class="lbl">건물</div><div class="val">NAVER 그린팩토리</div></div>
+        <div class="info-item"><div class="lbl">규모</div><div class="val">지상 27층 / 지하 7층<br>2010년 3월 완공</div></div>
+        <div class="info-item"><div class="lbl">주소</div><div class="val">경기도 성남시 분당구<br>불정로 6 (정자동)</div></div>
+        <div class="info-item"><div class="lbl">주차</div><div class="val">총 799대</div></div>
+      </div></div></div>
+    </div>
+  </div>
+  <div id="gf-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER グリーンファクトリー<br><span class="en">Green Factory</span></h1><div class="sub">京畿道城南市盆唐区 · 亭子洞</div><div class="addr-pill">📍 京畿道城南市盆唐区不亭路6</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.5!2d127.1052!3d37.3595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b58f2b1e75d11%3A0x9a87e641b2e7c67c!2sNAVER+Green+Factory!5e0!3m2!1sja!2skr" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">金浦空港</div><strong>9号線 → 新論峴駅 → 新盆唐線 亭子駅</strong><p>金浦空港駅から9号線(急行) → 新論峴駅で新盆唐線に乗換 → 亭子駅下車<br>所要時間 約70分</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">仁川空港</div><strong>AREX直通 → ソウル駅 → 江南駅 → 新盆唐線 亭子駅</strong><p>AREX直通列車 → ソウル駅(約43分) → 2号線 江南駅 → 新盆唐線 亭子駅<br>所要時間 約90〜105分</p></div></div>
+        <div class="step"><div class="step-num">③</div><div class="step-content"><div class="tag">亭子駅から徒歩</div><strong>亭子駅 3番出口 → 徒歩約8〜10分</strong></div></div>
+      </div></div></div>
+    </div>
+  </div>
+  <div id="gf-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER Green Factory<br><span class="en">Bundang, Seongnam</span></h1><div class="sub">Gyeonggi-do, South Korea</div><div class="addr-pill">📍 6 Buljeong-ro, Bundang-gu, Seongnam-si, Gyeonggi-do</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.5!2d127.1052!3d37.3595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b58f2b1e75d11%3A0x9a87e641b2e7c67c!2sNAVER+Green+Factory!5e0!3m2!1sen!2skr" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Directions</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">Gimpo Airport</div><strong>Line 9 → Sinnonhyeon Stn → Sinbundang Line → Jeongja Stn</strong><p>Line 9 Express from Gimpo → Transfer at Sinnonhyeon → Sinbundang Line to Jeongja<br>Approx. 70 min</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Incheon Airport</div><strong>AREX Express → Seoul Stn → Gangnam → Sinbundang Line → Jeongja</strong><p>AREX Express to Seoul Station (43 min) → Line 2 to Gangnam → Sinbundang Line to Jeongja<br>Approx. 90–105 min</p></div></div>
+        <div class="step"><div class="step-num">③</div><div class="step-content"><div class="tag">From Jeongja Stn</div><strong>Exit 3 → 8–10 min walk</strong><p>Use Naver Map or KakaoMap for walking directions (Google Maps limited in Korea)</p></div></div>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== connectone ===== -->
+<div id="office-co" class="office-section">
+  <div id="co-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER connectone<br><span class="en">춘천 오피스</span></h1><div class="sub">강원도 춘천시</div><div class="addr-pill">📍 강원도 춘천시 데이터산업로 56</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8!2d127.7414!3d37.8813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3562e5e7b5e5db33%3A0x8a50b0408a09bb1e!2sNAVER+Connect+One!5e0!3m2!1sko!2skr" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>상세 정보 준비 중입니다.<br>각 법인 담당자에게 정보를 요청해 주세요.</div>
+    </div>
+  </div>
+  <div id="co-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER connectone<br><span class="en">春川オフィス</span></h1><div class="sub">江原道春川市</div><div class="addr-pill">📍 江原道春川市データ産業路56</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8!2d127.7414!3d37.8813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3562e5e7b5e5db33%3A0x8a50b0408a09bb1e!2sNAVER+Connect+One!5e0!3m2!1sja!2skr" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>詳細情報を準備中です。<br>各法人の担当者に情報をご依頼ください。</div>
+    </div>
+  </div>
+  <div id="co-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER connectone<br><span class="en">Chuncheon Office</span></h1><div class="sub">Gangwon-do, South Korea</div><div class="addr-pill">📍 56 Data Sanup-ro, Chuncheon-si, Gangwon-do</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8!2d127.7414!3d37.8813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3562e5e7b5e5db33%3A0x8a50b0408a09bb1e!2sNAVER+Connect+One!5e0!3m2!1sen!2skr" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>Details coming soon.<br>Please contact the local office for more information.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LA Office ===== -->
+<div id="office-la" class="office-section">
+  <div id="la-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>WEBTOON Entertainment Inc.<br><span class="en">LA Office</span></h1><div class="sub">Los Angeles, California, USA</div><div class="addr-pill">📍 5700 Wilshire Blvd., Suite 220, Los Angeles, CA 90036</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.2!2d-118.3545!3d34.0621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93c63a2b4e1%3A0x5e0e8d0d8f5e8b0a!2s5700+Wilshire+Blvd%2C+Los+Angeles%2C+CA+90036!5e0!3m2!1sko!2sus" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div><div class="tag">LAX 공항 · 차량/Uber</div><strong>약 15~20분 (교통 상황에 따라 변동)</strong><p>Wilshire Blvd 방향 · 약 10마일</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">LAX 공항 · 대중교통</div><strong>LAX Metro Connector → Metro 버스/전철</strong><p>무료 셔틀로 LAX/MTC역 이동 후 Metro 환승<br>총 소요 약 1.5~2시간 · 요금 $1.75</p></div></div>
+      </div></div></div>
+    </div>
+  </div>
+  <div id="la-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>WEBTOON Entertainment Inc.<br><span class="en">LAオフィス</span></h1><div class="sub">ロサンゼルス, カリフォルニア, USA</div><div class="addr-pill">📍 5700 Wilshire Blvd., Suite 220, Los Angeles, CA 90036</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.2!2d-118.3545!3d34.0621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93c63a2b4e1%3A0x5e0e8d0d8f5e8b0a!2s5700+Wilshire+Blvd%2C+Los+Angeles%2C+CA+90036!5e0!3m2!1sja!2sus" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">LAX · 車/Uber</div><strong>約15〜20分（交通状況により変動）</strong></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">LAX · 公共交通</div><strong>LAX Metro Connector → Metro バス/電車</strong><p>所要時間 約1.5〜2時間 · 運賃 $1.75</p></div></div>
+      </div></div></div>
+    </div>
+  </div>
+  <div id="la-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>WEBTOON Entertainment Inc.<br><span class="en">LA Office</span></h1><div class="sub">Los Angeles, California, USA</div><div class="addr-pill">📍 5700 Wilshire Blvd., Suite 220, Los Angeles, CA 90036</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.2!2d-118.3545!3d34.0621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b93c63a2b4e1%3A0x5e0e8d0d8f5e8b0a!2s5700+Wilshire+Blvd%2C+Los+Angeles%2C+CA+90036!5e0!3m2!1sen!2sus" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Directions</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">LAX · Drive/Uber</div><strong>Approx. 15–20 min (traffic dependent)</strong><p>~10 miles via I-10 E or La Cienega Blvd</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">LAX · Public Transit</div><strong>LAX Metro Connector → Metro bus/rail</strong><p>Free shuttle to LAX/MTC, then Metro connections<br>Approx. 1.5–2 hours · Fare $1.75</p></div></div>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Wattpad Toronto ===== -->
+<div id="office-wp" class="office-section">
+  <div id="wp-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>Wattpad<br><span class="en">Toronto Office</span></h1><div class="sub">Toronto, Ontario, Canada</div><div class="addr-pill">📍 36 Wellington St E, Suite 200, Toronto, ON M5E 1C7</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2!2d-79.3749!3d43.6488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb2b1f94b3e1%3A0x3e3f3e3e3e3e3e3e!2s36+Wellington+St+E%2C+Toronto%2C+ON+M5E+1C7!5e0!3m2!1sko!2sca" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div><div class="tag">Toronto Pearson · UP Express</div><strong>UP Express → Union Station → 도보 5~10분</strong><p>15분 간격 운행 · 소요 28분 · 요금 $12.35 (PRESTO $9.25)<br>Union Station에서 Wellington St 동쪽으로 도보</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Toronto Pearson · 차량/Uber</div><strong>약 20분 (교통 상황에 따라 변동)</strong></div></div>
+      </div></div></div>
+    </div>
+  </div>
+  <div id="wp-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>Wattpad<br><span class="en">トロントオフィス</span></h1><div class="sub">トロント, オンタリオ, カナダ</div><div class="addr-pill">📍 36 Wellington St E, Suite 200, Toronto, ON M5E 1C7</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2!2d-79.3749!3d43.6488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb2b1f94b3e1%3A0x3e3f3e3e3e3e3e3e!2s36+Wellington+St+E%2C+Toronto%2C+ON+M5E+1C7!5e0!3m2!1sja!2sca" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">Pearson空港 · UP Express</div><strong>UP Express → Union Station → 徒歩5〜10分</strong><p>15分間隔 · 所要28分 · 運賃 $12.35</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Pearson空港 · 車/Uber</div><strong>約20分（交通状況により変動）</strong></div></div>
+      </div></div></div>
+    </div>
+  </div>
+  <div id="wp-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>Wattpad<br><span class="en">Toronto Office</span></h1><div class="sub">Toronto, Ontario, Canada</div><div class="addr-pill">📍 36 Wellington St E, Suite 200, Toronto, ON M5E 1C7</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2!2d-79.3749!3d43.6488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb2b1f94b3e1%3A0x3e3f3e3e3e3e3e3e!2s36+Wellington+St+E%2C+Toronto%2C+ON+M5E+1C7!5e0!3m2!1sen!2sca" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Directions</h2></div><div class="card-body"><div class="steps">
+        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">Pearson Airport · UP Express</div><strong>UP Express → Union Station → 5–10 min walk</strong><p>Every 15 min · 28 min ride · Fare $12.35 (PRESTO $9.25)<br>Walk east on Wellington St from Union Station</p></div></div>
+        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Pearson Airport · Drive/Uber</div><strong>Approx. 20 min (traffic dependent)</strong></div></div>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Indonesia ===== -->
+<div id="office-id" class="office-section">
+  <div id="id-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Company Indonesia<br><span class="en">Jakarta Office</span></h1><div class="sub">The Energy Building 17F · SCBD, Jakarta</div><div class="addr-pill">📍 The Energy Building 17F, SCBD Lot 11A, Jl. Jend. Sudirman Kav. 52-53, Jakarta 12190</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d106.8107!3d-6.2246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d2ecdc58f%3A0x3b38030517a7a859!2sThe+Energy+Building!5e0!3m2!1sko!2sid" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>상세 정보 준비 중입니다.<br>각 법인 담당자에게 정보를 요청해 주세요.</div>
+    </div>
+  </div>
+  <div id="id-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Company Indonesia<br><span class="en">ジャカルタオフィス</span></h1><div class="sub">The Energy Building 17F · SCBD, ジャカルタ</div><div class="addr-pill">📍 The Energy Building 17F, SCBD Lot 11A, Jl. Jend. Sudirman Kav. 52-53, Jakarta 12190</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d106.8107!3d-6.2246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d2ecdc58f%3A0x3b38030517a7a859!2sThe+Energy+Building!5e0!3m2!1sja!2sid" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>詳細情報を準備中です。<br>各法人の担当者に情報をご依頼ください。</div>
+    </div>
+  </div>
+  <div id="id-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Company Indonesia<br><span class="en">Jakarta Office</span></h1><div class="sub">The Energy Building 17F · SCBD, Jakarta</div><div class="addr-pill">📍 The Energy Building 17F, SCBD Lot 11A, Jl. Jend. Sudirman Kav. 52-53, Jakarta 12190</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d106.8107!3d-6.2246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d2ecdc58f%3A0x3b38030517a7a859!2sThe+Energy+Building!5e0!3m2!1sen!2sid" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>Details coming soon.<br>Please contact the local office for more information.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Thailand ===== -->
+<div id="office-th" class="office-section">
+  <div id="th-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Company (Thailand)<br><span class="en">Bangkok Office</span></h1><div class="sub">Gaysorn Tower 17-18F · Pathumwan, Bangkok</div><div class="addr-pill">📍 Gaysorn Tower 17-18F, 127 Ratchadamri Rd, Lumpini, Pathumwan, Bangkok 10330</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5!2d100.5397!3d13.7449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ecfe1a5c705%3A0x875b2e6a3dfdee51!2sGaysorn+Tower!5e0!3m2!1sko!2sth" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>상세 정보 준비 중입니다.<br>각 법인 담당자에게 정보를 요청해 주세요.</div>
+    </div>
+  </div>
+  <div id="th-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Company (Thailand)<br><span class="en">バンコクオフィス</span></h1><div class="sub">Gaysorn Tower 17-18F · パトゥムワン, バンコク</div><div class="addr-pill">📍 Gaysorn Tower 17-18F, 127 Ratchadamri Rd, Bangkok 10330</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5!2d100.5397!3d13.7449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ecfe1a5c705%3A0x875b2e6a3dfdee51!2sGaysorn+Tower!5e0!3m2!1sja!2sth" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>詳細情報を準備中です。<br>各法人の担当者に情報をご依頼ください。</div>
+    </div>
+  </div>
+  <div id="th-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Company (Thailand)<br><span class="en">Bangkok Office</span></h1><div class="sub">Gaysorn Tower 17-18F · Pathumwan, Bangkok</div><div class="addr-pill">📍 Gaysorn Tower 17-18F, 127 Ratchadamri Rd, Lumpini, Pathumwan, Bangkok 10330</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5!2d100.5397!3d13.7449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ecfe1a5c705%3A0x875b2e6a3dfdee51!2sGaysorn+Tower!5e0!3m2!1sen!2sth" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>Details coming soon.<br>Please contact the local office for more information.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Taiwan ===== -->
+<div id="office-tw" class="office-section">
+  <div id="tw-ko" class="lang-section active">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Taiwan Limited<br><span class="en">Taipei Office</span></h1><div class="sub">Neihu District · Taipei</div><div class="addr-pill">📍 No. 333, RuiGuang Rd., Neihu District, Taipei 11492 (台北市內湖區瑞光路333號)</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.1!2d121.5677!3d25.0770!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7c8e5baaab%3A0x50b9e898fa8fc64!2sNo.+333%2C+Ruiguang+Rd%2C+Neihu+District%2C+Taipei!5e0!3m2!1sko!2stw" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>상세 정보 준비 중입니다.<br>각 법인 담당자에게 정보를 요청해 주세요.</div>
+    </div>
+  </div>
+  <div id="tw-ja" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Taiwan Limited<br><span class="en">台北オフィス</span></h1><div class="sub">內湖區 · 台北</div><div class="addr-pill">📍 台北市內湖區瑞光路333號 11492</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.1!2d121.5677!3d25.0770!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7c8e5baaab%3A0x50b9e898fa8fc64!2sNo.+333%2C+Ruiguang+Rd%2C+Neihu+District%2C+Taipei!5e0!3m2!1sja!2stw" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>詳細情報を準備中です。<br>各法人の担当者に情報をご依頼ください。</div>
+    </div>
+  </div>
+  <div id="tw-en" class="lang-section">
+    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Taiwan Limited<br><span class="en">Taipei Office</span></h1><div class="sub">Neihu District · Taipei</div><div class="addr-pill">📍 No. 333, RuiGuang Rd., Neihu District, Taipei 11492</div></div></div></div>
+    <div class="main">
+      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.1!2d121.5677!3d25.0770!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7c8e5baaab%3A0x50b9e898fa8fc64!2sNo.+333%2C+Ruiguang+Rd%2C+Neihu+District%2C+Taipei!5e0!3m2!1sen!2stw" allowfullscreen loading="lazy"></iframe></div></div></div>
+      <div class="placeholder"><div class="big">🏗</div>Details coming soon.<br>Please contact the local office for more information.</div>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 NAVER · Global 출장자 가이드</footer>
 <script>
-  var curLang = 'ko', curOffice = 'ldf';
+  var curLang = 'ko', curOffice = 'gf';
   function setLang(lang, btn) {
     curLang = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
