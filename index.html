@@ -1,508 +1,175 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japan Office Visitor Guide</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap');
-
-  :root {
-    --primary: #03C75A;
-    --primary-dark: #00A84A;
-    --primary-light: #E8F9EF;
-    --dark: #1a1a1a;
-    --gray1: #333;
-    --gray2: #666;
-    --gray3: #999;
-    --gray4: #ccc;
-    --gray5: #f2f2f2;
-    --white: #fff;
-    --border: #e8e8e8;
-    --shadow: 0 2px 8px rgba(0,0,0,.08);
-    --radius: 10px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR','Noto Sans JP','Segoe UI',sans-serif; background: #f5f6f8; color: var(--gray1); font-size: 14px; }
-
-  /* ── HEADER ── */
-  header {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    height: 56px;
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    justify-content: space-between;
-    position: sticky; top: 0; z-index: 200;
-    box-shadow: var(--shadow);
-  }
-  .logo {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .logo-mark {
-    background: var(--primary);
-    color: #fff;
-    font-weight: 700;
-    font-size: 18px;
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    letter-spacing: -1px;
-  }
-  .logo-text {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--gray1);
-    letter-spacing: -.3px;
-  }
-  .logo-text span { color: var(--primary); }
-  .header-right { display: flex; align-items: center; gap: 6px; }
-  .lang-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--gray2);
-    padding: 5px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    transition: all .15s;
-    font-family: inherit;
-  }
-  .lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); font-weight: 700; }
-  .lang-btn:hover:not(.active) { border-color: var(--primary); color: var(--primary); }
-
-  /* ── OFFICE TABS ── */
-  .office-nav {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    position: sticky; top: 56px; z-index: 150;
-    display: flex;
-    align-items: center;
-    gap: 0;
-    overflow-x: auto;
-  }
-  .office-nav::-webkit-scrollbar { height: 3px; }
-  .office-nav::-webkit-scrollbar-thumb { background: var(--gray4); border-radius: 3px; }
-  .office-tab {
-    background: none;
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: var(--gray3);
-    padding: 16px 20px 13px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-    white-space: nowrap;
-    transition: all .15s;
-    font-family: inherit;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .office-tab:hover { color: var(--gray1); }
-  .office-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
-  .office-tab .bldg { font-size: 11px; color: var(--gray4); font-weight: 400; }
-  .office-tab.active .bldg { color: var(--primary); opacity: .7; }
-
-  /* ── HERO ── */
-  .hero {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 32px 24px 28px;
-  }
-  .hero-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  .hero-left h1 { font-size: 22px; font-weight: 700; color: var(--gray1); line-height: 1.3; }
-  .hero-left h1 .en { color: var(--primary); }
-  .hero-left .sub { font-size: 13px; color: var(--gray3); margin-top: 4px; }
-  .addr-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--gray5); border: 1px solid var(--border);
-    border-radius: 20px; padding: 6px 14px;
-    font-size: 12px; color: var(--gray2);
-    margin-top: 12px;
-  }
-  .map-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--primary); color: #fff;
-    border: none; border-radius: 8px;
-    padding: 10px 18px; font-size: 13px; font-weight: 600;
-    cursor: pointer; text-decoration: none;
-    transition: background .15s;
-    font-family: inherit;
-    white-space: nowrap;
-    align-self: flex-start;
-    margin-top: 4px;
-  }
-  .map-btn:hover { background: var(--primary-dark); }
-
-  /* ── MAIN ── */
-  .main { max-width: 860px; margin: 0 auto; padding: 24px 18px; display: grid; gap: 16px; }
-
-  /* ── CARD ── */
-  .card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-  }
-  .card-head {
-    display: flex; align-items: center; gap: 8px;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .card-head .ico {
-    width: 28px; height: 28px; border-radius: 7px;
-    background: var(--primary-light);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; flex-shrink: 0;
-  }
-  .card-head h2 { font-size: 14px; font-weight: 700; color: var(--gray1); }
-  .card-head .badge { font-size: 11px; color: var(--gray3); font-weight: 400; margin-left: 4px; }
-  .card-body { padding: 16px 20px; }
-
-  /* ── MAP ── */
-  .map-wrap { border-radius: 8px; overflow: hidden; height: 220px; border: 1px solid var(--border); }
-  .map-wrap iframe { width: 100%; height: 100%; border: none; }
-
-  /* ── STEPS ── */
-  .steps { display: grid; gap: 8px; }
-  .step {
-    display: flex; gap: 12px; align-items: flex-start;
-    padding: 12px 14px;
-    background: var(--gray5);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .step-num {
-    background: var(--primary); color: #fff;
-    font-weight: 700; font-size: 11px;
-    min-width: 24px; height: 24px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px;
-  }
-  .tag {
-    display: inline-block;
-    background: var(--primary-light); color: var(--primary-dark);
-    font-size: 10px; padding: 2px 7px; border-radius: 6px;
-    margin-bottom: 3px; font-weight: 700;
-  }
-  .tag.rec { background: #fff3e0; color: #e65c00; }
-  .step-content strong { font-size: 13px; color: var(--gray1); display: block; margin-bottom: 2px; }
-  .step-content p { font-size: 12px; color: var(--gray2); line-height: 1.65; }
-
-  /* ── INFO GRID ── */
-  .info-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 10px; }
-  .info-item { background: var(--gray5); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-  .info-item .lbl { font-size: 10px; color: var(--gray3); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
-  .info-item .val { font-size: 13px; font-weight: 600; color: var(--gray1); line-height: 1.5; }
-
-  /* ── NOTICE ── */
-  .notice {
-    background: var(--primary-light);
-    border: 1px solid #b3e8cc;
-    border-radius: 8px; padding: 12px 16px;
-    font-size: 12px; color: #1a6b3c; line-height: 1.7;
-    display: flex; gap: 10px;
-  }
-  .warn {
-    background: #fffbe6; border: 1px solid #ffe082;
-    border-radius: 8px; padding: 12px 16px;
-    font-size: 12px; color: #7a5c00; line-height: 1.7;
-    display: flex; gap: 10px;
-  }
-  .ni { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-
-  /* ── CONTACT ROW ── */
-  .contact-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .contact-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .c-ico { width: 34px; height: 34px; border-radius: 8px; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-  .c-lbl { font-size: 11px; color: var(--gray3); margin-bottom: 2px; }
-  .c-val { font-size: 13px; font-weight: 600; color: var(--gray1); }
-  .c-val a { color: var(--primary-dark); text-decoration: none; }
-  .c-val a:hover { text-decoration: underline; }
-
-  /* ── PLACEHOLDER ── */
-  .placeholder { padding: 32px; text-align: center; color: var(--gray4); font-size: 13px; }
-  .placeholder .big { font-size: 32px; margin-bottom: 8px; }
-
-  footer { text-align: center; padding: 24px; color: var(--gray4); font-size: 11px; border-top: 1px solid var(--border); background: var(--white); margin-top: 24px; }
-
-  .lang-section { display: none; }
-  .lang-section.active { display: block; }
-  .office-section { display: none; }
-  .office-section.active { display: block; }
-</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    body {background-color: #f2f4f6}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #1ac048; -webkit-text-stroke: #1ac048}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Apple SD Gothic Neo'; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #1ac048}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Apple SD Gothic Neo'; color: #535353; -webkit-text-stroke: #535353}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Helvetica Neue'; color: #535353; -webkit-text-stroke: #535353}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #1ac048; -webkit-text-stroke: #1ac048}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 11.0px 'Helvetica Neue'; color: #1ac048; -webkit-text-stroke: #1ac048}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #878787; -webkit-text-stroke: #878787}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 11.0px 'Helvetica Neue'; color: #c1c1c1; -webkit-text-stroke: #c1c1c1}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #535353; -webkit-text-stroke: #535353}
+    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #1ac048}
+    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px '.Apple Color Emoji UI'; color: #262626; -webkit-text-stroke: #262626}
+    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #262626; -webkit-text-stroke: #262626; min-height: 17.0px}
+    p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px '.Apple Color Emoji UI'; color: #664a02; -webkit-text-stroke: #664a02}
+    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Apple SD Gothic Neo'; color: #664a02; -webkit-text-stroke: #664a02}
+    p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #664a02; -webkit-text-stroke: #664a02}
+    p.p19 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #9f6a04; -webkit-text-stroke: #9f6a04}
+    p.p20 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p21 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px 'Apple SD Gothic Neo'; color: #149b3a; -webkit-text-stroke: #149b3a}
+    p.p22 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626}
+    p.p23 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Apple SD Gothic Neo'; color: #535353; -webkit-text-stroke: #535353}
+    p.p24 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #878787; -webkit-text-stroke: #878787}
+    p.p25 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px 'Helvetica Neue'; color: #149b3a; -webkit-text-stroke: #149b3a}
+    p.p26 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #262626; -webkit-text-stroke: #262626}
+    p.p27 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple Symbols'; color: #262626; -webkit-text-stroke: #262626}
+    p.p28 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px 'Apple SD Gothic Neo'; color: #878787; -webkit-text-stroke: #878787}
+    p.p29 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px 'Helvetica Neue'; color: #878787; -webkit-text-stroke: #878787}
+    p.p30 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px '.Apple Color Emoji UI'; color: #262626; -webkit-text-stroke: #262626}
+    p.p31 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Apple SD Gothic Neo'; color: #878787; -webkit-text-stroke: #878787}
+    p.p32 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #149b3a; -webkit-text-stroke: #149b3a}
+    p.p33 {margin: 0.0px 0.0px 14.0px 0.0px; text-align: center; font: 13.0px 'Apple SD Gothic Neo'; color: #535353; -webkit-text-stroke: #535353}
+    p.p34 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 13.0px 'Apple SD Gothic Neo'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p35 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 11.0px 'Helvetica Neue'; color: #c1c1c1; -webkit-text-stroke: #c1c1c1; background-color: #ffffff}
+    span.s1 {font-kerning: none; background-color: #1ac048}
+    span.s2 {font-kerning: none; color: #262626; background-color: #ffffff; -webkit-text-stroke: 0px #262626}
+    span.s3 {font: 16.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #ffffff}
+    span.s4 {font-kerning: none; background-color: #ffffff}
+    span.s5 {font-kerning: none}
+    span.s6 {font: 13.0px '.Apple Color Emoji UI'; font-kerning: none; background-color: #ffffff}
+    span.s7 {font: 22.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #ffffff}
+    span.s8 {font: 22.0px 'Hiragino Sans'; font-kerning: none; background-color: #ffffff}
+    span.s9 {font: 22.0px 'Apple SD Gothic Neo'; font-kerning: none; color: #1ac048; background-color: #ffffff; -webkit-text-stroke: 0px #1ac048}
+    span.s10 {font-kerning: none; color: #1ac048; background-color: #ffffff; -webkit-text-stroke: 0px #1ac048}
+    span.s11 {font: 12.0px '.Apple Color Emoji UI'; font-kerning: none; background-color: #efefef}
+    span.s12 {font-kerning: none; background-color: #efefef}
+    span.s13 {font: 12.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #efefef}
+    span.s14 {font: 12.0px 'Hiragino Sans'; font-kerning: none; background-color: #efefef}
+    span.s15 {font: 13.0px '.Apple Color Emoji UI'; font-kerning: none}
+    span.s16 {font: 13.0px 'Helvetica Neue'; font-kerning: none}
+    span.s17 {font-kerning: none; background-color: #e3f8eb}
+    span.s18 {font-kerning: none; background-color: #fffbe0}
+    span.s19 {font: 12.0px 'Helvetica Neue'; font-kerning: none; background-color: #fffbe0}
+    span.s20 {font: 12.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #fffbe0}
+    span.s21 {font-kerning: none; color: #664a02; background-color: #fffbe0; -webkit-text-stroke: 0px #664a02}
+    span.s22 {font: 12.0px 'Apple SD Gothic Neo'; font-kerning: none; color: #664a02; background-color: #fffbe0; -webkit-text-stroke: 0px #664a02}
+    span.s23 {text-decoration: underline ; font-kerning: none; color: #9f6a04; -webkit-text-stroke: 0px #9f6a04}
+    span.s24 {font: 14.0px 'Helvetica Neue'; font-kerning: none; background-color: #ffffff}
+    span.s25 {font-kerning: none; color: #dd4606; background-color: #fff0d9; -webkit-text-stroke: 0px #dd4606}
+    span.s26 {font: 14.0px 'Helvetica Neue'; font-kerning: none; color: #262626; background-color: #efefef; -webkit-text-stroke: 0px #262626}
+    span.s27 {font: 10.0px 'Helvetica Neue'; font-kerning: none; background-color: #e3f8eb}
+    span.s28 {font: 13.0px 'Helvetica Neue'; font-kerning: none; background-color: #efefef}
+    span.s29 {font: 12.0px 'Helvetica Neue'; font-kerning: none; background-color: #efefef}
+    span.s30 {font: 12.0px 'Helvetica Neue'; font-kerning: none}
+    span.s31 {font: 11.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #ffffff}
+    span.s32 {font: 10.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #e3f8eb}
+    span.s33 {font: 13.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #efefef}
+    span.s34 {font: 10.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #efefef}
+    span.s35 {font: 11.0px 'Helvetica Neue'; font-kerning: none; background-color: #ffffff}
+    span.s36 {font: 13.0px 'Helvetica Neue'; font-kerning: none; color: #149b3a; -webkit-text-stroke: 0px #149b3a}
+    span.s37 {font: 13.0px 'Helvetica Neue'; font-kerning: none; background-color: #ffffff}
+    span.s38 {font: 13.0px '.Apple Color Emoji UI'; font-kerning: none; background-color: #1ac048}
+    span.s39 {font: 13.0px 'Apple SD Gothic Neo'; font-kerning: none}
+    span.s40 {font: 11.0px 'Apple SD Gothic Neo'; font-kerning: none}
+  </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<header>
-  <div class="logo">
-    <div class="logo-mark">N</div>
-    <div class="logo-text">JAPAN <span>Office Guide</span></div>
-  </div>
-  <div class="header-right">
-    <button class="lang-btn active" onclick="setLang('ko',this)">한국어</button>
-    <button class="lang-btn" onclick="setLang('ja',this)">日本語</button>
-    <button class="lang-btn" onclick="setLang('en',this)">English</button>
-  </div>
-</header>
-
-<!-- OFFICE TABS -->
-<nav class="office-nav" id="office-nav">
-  <button class="office-tab active" onclick="setOffice('ldf',this)">🏢 LINE Digital Frontier <span class="bldg">Roppongi Midtown</span></button>
-  <button class="office-tab" onclick="setOffice('basecamp',this)">🏨 BASECAMP TOKYO <span class="bldg">Meguro</span></button>
-  <button class="office-tab" onclick="setOffice('lw',this)">💼 LINE Works <span class="bldg">Shibuya Sakura Stage</span></button>
-  <button class="office-tab" onclick="setOffice('nz',this)">📸 NAVER Z / SNOW <span class="bldg">Ōsaki Garden Tower</span></button>
-</nav>
-
-<!-- ===== LDF ===== -->
-<div id="office-ldf" class="office-section active">
-  <!-- KO -->
-  <div id="ldf-ko" class="lang-section active">
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <h1>LINE Digital Frontier株式会社<br><span class="en">롯폰기 오피스</span></h1>
-          <div class="sub">Tokyo Midtown Tower 11F / 12F</div>
-          <div class="addr-pill">📍 東京都港区赤坂9-7-1 Midtown Tower 11/12F</div>
-        </div>
-        <a class="map-btn" href="https://share.google/LPcCvqOYOdUbiboUd" target="_blank">🗺 Google Maps</a>
-      </div>
-    </div>
-    <div class="main">
-      <div class="card">
-        <div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div>
-        <div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.3!2d139.7308747!3d35.6659803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b78922e6353:0xeb3e39dbe18da4d6!2sTokyo+Midtown!5e0!3m2!1sko!2sjp" allowfullscreen loading="lazy"></iframe></div></div>
-      </div>
-      <div class="warn"><div class="ni">⚠️</div><div><strong>방문 전 필수 준비</strong><br>① 건물 출입 QR코드 — LDF 직원에게 사전 요청 필요<br>② 오피스 게스트카드 — <a href="mailto:dl_ldf_workplace@webtoon.com" style="color:#b07d00">dl_ldf_workplace@webtoon.com</a> 으로 신청</div></div>
-      <div class="card">
-        <div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div>
-        <div class="card-body">
-          <div class="steps">
-            <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div> <div class="tag">도에이 오에도선</div><strong>롯폰기역 8번 출구 → 지하통로 직결</strong><p>나리타 공항: JR 나리타 익스프레스 → 신주쿠역 → 오에도선 롯폰기역</p></div></div>
-            <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">도쿄 메트로 히비야선</div><strong>롯폰기역 → 지하통로 직결</strong><p>하네다 공항: 게이큐선 → 다이몬역 → 오에도선 롯폰기역<br>BASECAMP TOKYO: JR 야마노테선 메구로역 → 에비스역 → 히비야선 롯폰기역<br>※ 지하통로에 계단 있음. 휠체어·유모차는 오에도선 권장</p></div></div>
-            <div class="step"><div class="step-num">③</div><div class="step-content"><div class="tag">도쿄 메트로 지요다선</div><strong>노기사카역 3번 출구 → 도보 약 3분</strong></div></div>
-            <div class="step"><div class="step-num">④</div><div class="step-content"><div class="tag">도쿄 메트로 난보쿠선</div><strong>롯폰기잇쵸메역 1번 출구 → 도보 약 10분</strong></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head"><div class="ico">🏢</div><h2>건물 입장 안내</h2><span class="badge">※ 22시~6시 새벽 기준</span></div>
-        <div class="card-body">
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F 또는 B1F · 24시간</div><strong>QR코드로 미드타운 빌딩 입장</strong><p>새벽(22시~6시): 가장 오른쪽 문 옆 단말기에 QR코드 터치 / 퇴관: 문 아래 잠금장치 해제</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">엘리베이터 B</div><strong>엘리베이터 B로 11F 또는 12F 이동</strong></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-content"><div class="tag">새벽 출입구 제한</div><strong>새벽에는 지정 출입구 1곳만 이용 가능</strong><p>11F: 여성 화장실 근처 출입구 / 12F: 중앙 출입구</p></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head"><div class="ico">ℹ</div><h2>기본 정보</h2></div>
-        <div class="card-body">
-          <div class="info-grid">
-            <div class="info-item"><div class="lbl">건물</div><div class="val">Tokyo Midtown Tower</div></div>
-            <div class="info-item"><div class="lbl">층수</div><div class="val">11F / 12F</div></div>
-            <div class="info-item"><div class="lbl">입퇴관</div><div class="val">365일 24시간<br>※22시~6시 출입구 제한</div></div>
-            <div class="info-item"><div class="lbl">런치·카페 (11F)</div><div class="val">런치 11:30–13:30<br>카페 09:00–17:30</div></div>
-            <div class="info-item"><div class="lbl">WiFi</div><div class="val">connect_wlan</div></div>
-            <div class="info-item"><div class="lbl">결제</div><div class="val">AirPAY (Naver Pay, Kakao Pay, PayPay 등)</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head"><div class="ico">📞</div><h2>담당자 연락처</h2></div>
-        <div class="card-body">
-          <div class="contact-row"><div class="c-ico">✉️</div><div><div class="c-lbl">출장 지원 (한·일·영)</div><div class="c-val"><a href="mailto:dl_ldf_shucchou@webtoon.com">dl_ldf_shucchou@webtoon.com</a></div></div></div>
-          <div class="contact-row"><div class="c-ico">🏢</div><div><div class="c-lbl">게스트카드·오피스 신청</div><div class="c-val"><a href="mailto:dl_ldf_workplace@webtoon.com">dl_ldf_workplace@webtoon.com</a></div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- JA -->
-  <div id="ldf-ja" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Digital Frontier株式会社<br><span class="en">六本木オフィス</span></h1><div class="sub">Tokyo Midtown Tower 11F / 12F</div><div class="addr-pill">📍 東京都港区赤坂9-7-1 Midtown Tower 11/12F</div></div><a class="map-btn" href="https://share.google/LPcCvqOYOdUbiboUd" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.3!2d139.7308747!3d35.6659803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b78922e6353:0xeb3e39dbe18da4d6!2sTokyo+Midtown!5e0!3m2!1sja!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">都営大江戸線</div><strong>六本木駅 8番出口 → 地下通路で直結</strong></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">東京メトロ日比谷線</div><strong>六本木駅 → 地下通路で直結</strong><p>※通路に階段あり。車椅子・ベビーカーは大江戸線推奨</p></div></div>
-        <div class="step"><div class="step-num">③</div><div class="step-content"><div class="tag">東京メトロ千代田線</div><strong>乃木坂駅 3番出口 → 徒歩約3分</strong></div></div>
-        <div class="step"><div class="step-num">④</div><div class="step-content"><div class="tag">東京メトロ南北線</div><strong>六本木一丁目駅 1番出口 → 徒歩約10分</strong></div></div>
-      </div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🏢</div><h2>入館案内</h2><span class="badge">※深夜22時〜6時</span></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F または B1F</div><strong>QRコードで入館</strong><p>深夜は一番右のドア横端末にタッチ。退館: ドア下の鍵を解錠</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">エレベーターB</div><strong>エレベーターBで11Fまたは12Fへ</strong></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="tag">深夜入口制限</div><strong>深夜は指定の入口1か所のみ</strong><p>11F: 女性トイレ近くの入口 / 12F: 中央入口</p></div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <!-- EN -->
-  <div id="ldf-en" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Digital Frontier<br><span class="en">Roppongi Office</span></h1><div class="sub">Tokyo Midtown Tower 11F / 12F</div><div class="addr-pill">📍 9-7-1 Akasaka, Minato-ku, Tokyo · Midtown Tower 11/12F</div></div><a class="map-btn" href="https://share.google/LPcCvqOYOdUbiboUd" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.3!2d139.7308747!3d35.6659803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b78922e6353:0xeb3e39dbe18da4d6!2sTokyo+Midtown!5e0!3m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Directions</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">Toei Oedo Line</div><strong>Roppongi Stn Exit 8 → Direct underground walkway</strong><p>From Narita: JR Narita Express → Shinjuku → Oedo Line Roppongi</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Tokyo Metro Hibiya Line</div><strong>Roppongi Stn → Direct underground walkway</strong><p>From BASECAMP TOKYO: JR Yamanote Meguro → Ebisu → Hibiya Line Roppongi<br>※ Stairs in walkway. Wheelchair/stroller: Oedo Line recommended</p></div></div>
-        <div class="step"><div class="step-num">③</div><div class="step-content"><div class="tag">Tokyo Metro Chiyoda Line</div><strong>Nogizaka Stn Exit 3 → 3 min walk</strong></div></div>
-        <div class="step"><div class="step-num">④</div><div class="step-content"><div class="tag">Tokyo Metro Nanboku Line</div><strong>Roppongi-itchome Stn Exit 1 → 10 min walk</strong></div></div>
-      </div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🏢</div><h2>Building Entry</h2><span class="badge">※ Late night 22:00–6:00</span></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">1F or B1F · 24hrs</div><strong>Enter with QR Code</strong><p>After 22:00: tap QR at rightmost door terminal. Exit: unlock latch at door bottom.</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">Elevator B</div><strong>Take Elevator B to 11F or 12F</strong></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-content"><div class="tag">Limited Entry after 22:00</div><strong>Only 1 entrance per floor available</strong><p>11F: near women's restroom / 12F: central entrance</p></div></div>
-      </div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== BASECAMP ===== -->
-<div id="office-basecamp" class="office-section">
-  <div id="basecamp-ko" class="lang-section active">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>BASECAMP TOKYO</h1><div class="sub">네이버 계열 임직원 전용 숙소 · 메구로</div><div class="addr-pill">📍 2-10-44 Kamiosaki, Shinagawa City, Tokyo 141-0021</div></div><a class="map-btn" href="https://share.google/tWuo4f84rK7KZjRpQ" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.8!2d139.7158766!3d35.6358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bab67b1ed4d%3A0x6b59abbeee0dc25d!2sBASECAMP+TOKYO!5e0!3m2!1sko!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div><div class="tag">JR 야마노테선</div><strong>메구로역(目黒駅) 하차 → 도보 약 5~10분</strong></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">도쿄 메트로 난보쿠선 / 도에이 미타선</div><strong>메구로역 하차 → 도보</strong></div></div>
-      </div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>LDF 오피스까지 가는 방법</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">JR 야마노테선</div><strong>메구로역 → 에비스역 (1정거장)</strong></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">도쿄 메트로 히비야선</div><strong>에비스역 → 롯폰기역 (2정거장) → 지하통로로 미드타운 직결</strong><p>총 소요 약 15~20분</p></div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <div id="basecamp-ja" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>BASECAMP TOKYO</h1><div class="sub">NAVER系列社員専用宿泊施設 · 目黒</div><div class="addr-pill">📍 品川区上大崎2-10-44 〒141-0021</div></div><a class="map-btn" href="https://share.google/tWuo4f84rK7KZjRpQ" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.8!2d139.7158766!3d35.6358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bab67b1ed4d%3A0x6b59abbeee0dc25d!2sBASECAMP+TOKYO!5e0!3m2!1sja!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">JR山手線</div><strong>目黒駅 下車 → 徒歩約5〜10分</strong></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">東京メトロ南北線 / 都営三田線</div><strong>目黒駅 下車 → 徒歩</strong></div></div>
-      </div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>LDFオフィスへのアクセス</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">JR山手線</div><strong>目黒駅 → 恵比寿駅（1駅）</strong></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">東京メトロ日比谷線</div><strong>恵比寿駅 → 六本木駅（2駅）→ 地下通路でミッドタウン直結</strong><p>所要時間 約15〜20分</p></div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <div id="basecamp-en" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>BASECAMP TOKYO</h1><div class="sub">Naver Group Employee Accommodation · Meguro</div><div class="addr-pill">📍 2-10-44 Kamiosaki, Shinagawa City, Tokyo 141-0021</div></div><a class="map-btn" href="https://share.google/tWuo4f84rK7KZjRpQ" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.8!2d139.7158766!3d35.6358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bab67b1ed4d%3A0x6b59abbeee0dc25d!2sBASECAMP+TOKYO!5e0!3m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Getting Here</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">JR Yamanote Line</div><strong>Meguro Station → 5–10 min walk</strong></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Tokyo Metro Nanboku / Toei Mita Line</div><strong>Meguro Station → walk</strong></div></div>
-      </div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Getting to LDF Office</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-content"><div class="tag">JR Yamanote Line</div><strong>Meguro → Ebisu (1 stop)</strong></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><div class="tag">Tokyo Metro Hibiya Line</div><strong>Ebisu → Roppongi (2 stops) → Direct walkway to Midtown</strong><p>Total approx. 15–20 min</p></div></div>
-      </div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== LINE WORKS ===== -->
-<div id="office-lw" class="office-section">
-  <div id="lw-ko" class="lang-section active">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Works Corporation<br><span class="en">시부야 오피스</span></h1><div class="sub">Shibuya Sakura Stage SHIBUYA TOWER 23F</div><div class="addr-pill">📍 〒150-6223 渋谷区桜丘町1−1 渋谷サクラステージ 23F</div></div><a class="map-btn" href="https://share.google/IK2C9Oh89AAm0AJOc" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6!2d139.701907!3d35.6571543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cffd3bb4fa9%3A0x9e7683306a76858a!2sLINE+Works+Corporation!5e0!3m2!1sko!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div><div class="tag">JR 각 노선</div><strong>시부야역 남쪽 출구(South Exit) → 도보 약 5분</strong><p>渋谷サクラステージ SHIBUYA TOWER 방향</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">도쿄 메트로 긴자선·한조몬선·후쿠토신선</div><strong>시부야역 하차 → 도보 약 5분</strong></div></div>
-      </div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">ℹ</div><h2>기본 정보</h2></div><div class="card-body"><div class="info-grid">
-        <div class="info-item"><div class="lbl">건물</div><div class="val">渋谷サクラステージ SHIBUYA TOWER</div></div>
-        <div class="info-item"><div class="lbl">층수</div><div class="val">23F</div></div>
-        <div class="info-item"><div class="lbl">운영시간</div><div class="val">평일 10:00–18:30</div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <div id="lw-ja" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Works Corporation<br><span class="en">渋谷オフィス</span></h1><div class="sub">渋谷サクラステージ SHIBUYAタワ 23F</div><div class="addr-pill">📍 〒150-6223 渋谷区桜丘町1−1 23F</div></div><a class="map-btn" href="https://share.google/IK2C9Oh89AAm0AJOc" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6!2d139.701907!3d35.6571543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cffd3bb4fa9%3A0x9e7683306a76858a!2sLINE+Works+Corporation!5e0!3m2!1sja!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">JR各線</div><strong>渋谷駅 南口 → 徒歩約5分</strong><p>渋谷サクラステージ SHIBUYAタワ方面へ</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">東京メトロ 銀座線・半蔵門線・副都心線</div><strong>渋谷駅 下車 → 徒歩約5分</strong></div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <div id="lw-en" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>LINE Works Corporation<br><span class="en">Shibuya Office</span></h1><div class="sub">Shibuya Sakura Stage SHIBUYA TOWER 23F</div><div class="addr-pill">📍 1-1 Sakuragaokacho, Shibuya, Tokyo 150-6223 · 23F</div></div><a class="map-btn" href="https://share.google/IK2C9Oh89AAm0AJOc" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6!2d139.701907!3d35.6571543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cffd3bb4fa9%3A0x9e7683306a76858a!2sLINE+Works+Corporation!5e0!3m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Directions</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">JR Lines</div><strong>Shibuya Stn South Exit → 5 min walk</strong><p>Head toward Shibuya Sakura Stage SHIBUYA TOWER</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Tokyo Metro Ginza / Hanzomon / Fukutoshin Line</div><strong>Shibuya Stn → 5 min walk</strong></div></div>
-      </div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== NAVER Z / SNOW ===== -->
-<div id="office-nz" class="office-section">
-  <div id="nz-ko" class="lang-section active">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER Z / SNOW<br><span class="en">Ōsaki Garden Tower</span></h1><div class="sub">品川区西品川 · Shinagawa</div><div class="addr-pill">📍 1-1-1 Nishishinagawa, Shinagawa City, Tokyo 141-0033</div></div><a class="map-btn" href="https://maps.app.goo.gl/3rS6cNmskoEnSCm87" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>지도</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.2!2d139.7317!3d35.6248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b3e8f0a1f0f%3A0x1!2sŌsaki+Garden+Tower!5e0!3m2!1sko!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>찾아오는 방법</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">추천</div><div class="tag">JR 야마노테선 / 사이쿄선 / 쇼난신주쿠라인</div><strong>오사키역(大崎駅) 하차 → 도보 약 3분</strong><p>Ōsaki Garden Tower 방향으로 이동</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">도쿄 임해고속철도 린카이선</div><strong>오사키역 하차 → 도보 약 3분</strong></div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <div id="nz-ja" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER Z / SNOW<br><span class="en">大崎ガーデンタワー</span></h1><div class="sub">品川区西品川1-1-1</div><div class="addr-pill">📍 品川区西品川1-1-1 〒141-0033</div></div><a class="map-btn" href="https://maps.app.goo.gl/3rS6cNmskoEnSCm87" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>地図</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.2!2d139.7317!3d35.6248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b3e8f0a1f0f%3A0x1!2sŌsaki+Garden+Tower!5e0!3m2!1sja!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>アクセス</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">おすすめ</div><div class="tag">JR山手線 / 埼京線 / 湘南新宿ライン</div><strong>大崎駅 下車 → 徒歩約3分</strong><p>大崎ガーデンタワー方面へ</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">東京臨海高速鉄道りんかい線</div><strong>大崎駅 下車 → 徒歩約3分</strong></div></div>
-      </div></div></div>
-    </div>
-  </div>
-  <div id="nz-en" class="lang-section">
-    <div class="hero"><div class="hero-inner"><div class="hero-left"><h1>NAVER Z / SNOW<br><span class="en">Ōsaki Garden Tower</span></h1><div class="sub">1-1-1 Nishishinagawa, Shinagawa City</div><div class="addr-pill">📍 1-1-1 Nishishinagawa, Shinagawa City, Tokyo 141-0033</div></div><a class="map-btn" href="https://maps.app.goo.gl/3rS6cNmskoEnSCm87" target="_blank">🗺 Google Maps</a></div></div>
-    <div class="main">
-      <div class="card"><div class="card-head"><div class="ico">🗺</div><h2>Map</h2></div><div class="card-body"><div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.2!2d139.7317!3d35.6248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b3e8f0a1f0f%3A0x1!2sŌsaki+Garden+Tower!5e0!3m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe></div></div></div>
-      <div class="card"><div class="card-head"><div class="ico">🚃</div><h2>Directions</h2></div><div class="card-body"><div class="steps">
-        <div class="step"><div class="step-num">①</div><div class="step-content"><div class="tag rec">Recommended</div><div class="tag">JR Yamanote / Saikyo / Shonan-Shinjuku Line</div><strong>Osaki Station → 3 min walk</strong><p>Head toward Ōsaki Garden Tower</p></div></div>
-        <div class="step"><div class="step-num">②</div><div class="step-content"><div class="tag">Tokyo Waterfront Area Rapid Transit Rinkai Line</div><strong>Osaki Station → 3 min walk</strong></div></div>
-      </div></div></div>
-    </div>
-  </div>
-</div>
-
-<footer>© 2026 NAVER / LINE Digital Frontier · Japan Office Visitor Guide</footer>
-
-<script>
-  var curLang = 'ko', curOffice = 'ldf';
-  var labels = { ko:'방문할 법인을 선택하세요', ja:'訪問先を選択してください', en:'Select your destination' };
-  function setLang(lang, btn) {
-    curLang = lang;
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    show();
-  }
-  function setOffice(office, btn) {
-    curOffice = office;
-    document.querySelectorAll('.office-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    show();
-  }
-  function show() {
-    document.querySelectorAll('.office-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
-    var os = document.getElementById('office-' + curOffice);
-    if (os) os.classList.add('active');
-    var ls = document.getElementById(curOffice + '-' + curLang);
-    if (ls) ls.classList.add('active');
-  }
-</script>
+<p class="p1"><span class="s1">N</span></p>
+<p class="p2"><span class="s2">JAPAN </span><span class="s3">출장자</span><span class="s4"> </span><span class="s3">가이드</span></p>
+<p class="p3"><span class="s5">한국어</span></p>
+<p class="p4"><span class="s4">日本語</span></p>
+<p class="p5"><span class="s4">English</span></p>
+<p class="p6"><span class="s6">🏢</span><span class="s4"> LINE Digital Frontier</span></p>
+<p class="p7"><span class="s4">Roppongi Midtown</span></p>
+<p class="p8"><span class="s6">🏨</span><span class="s4"> BASECAMP TOKYO</span></p>
+<p class="p9"><span class="s4">Meguro</span></p>
+<p class="p8"><span class="s6">💼</span><span class="s4"> LINE Works</span></p>
+<p class="p9"><span class="s4">Shibuya Sakura Stage</span></p>
+<p class="p8"><span class="s6">📸</span><span class="s4"> NAVER Z / SNOW</span></p>
+<p class="p9"><span class="s4">Ōsaki Garden Tower</span></p>
+<h1 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 22.0px 'Helvetica Neue'; color: #262626; -webkit-text-stroke: #262626"><span class="s4">LINE Digital Frontier</span><span class="s7">株式</span><span class="s8">会社</span><span class="s5"><br>
+</span><span class="s9">롯폰기</span><span class="s10"> </span><span class="s9">오피스</span></h1>
+<p class="p8"><span class="s4">Tokyo Midtown Tower 11F / 12F</span></p>
+<p class="p11"><span class="s11">📍</span><span class="s12"> </span><span class="s13">東京都港</span><span class="s14">区赤坂</span><span class="s12">9-7-1 Midtown Tower 11/12F</span></p>
+<p class="p12"><span class="s15"><a href="https://share.google/LPcCvqOYOdUbiboUd">🗺<span class="s16"> Google Maps</span></a></span></p>
+<p class="p13"><span class="s17">🗺</span></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626"><span class="s4">지도</span></h2>
+<p class="p15"><span class="s5"></span><br></p>
+<p class="p16"><span class="s18">⚠️</span></p>
+<p class="p17"><span class="s18">방문</span><span class="s19"> </span><span class="s18">전</span><span class="s19"> </span><span class="s18">필수</span><span class="s19"> </span><span class="s18">준비</span></p>
+<p class="p18"><span class="s18">① </span><span class="s20">건물</span><span class="s18"> </span><span class="s20">출입</span><span class="s18"> QR</span><span class="s20">코드</span><span class="s18"> — LDF </span><span class="s20">직원에게</span><span class="s18"> </span><span class="s20">사전</span><span class="s18"> </span><span class="s20">요청</span><span class="s18"> </span><span class="s20">필요</span></p>
+<p class="p19"><span class="s21">② </span><span class="s22">오피스</span><span class="s21"> </span><span class="s22">게스트카드</span><span class="s21"> — <a href="mailto:dl_ldf_workplace@webtoon.com"><span class="s23">dl_ldf_workplace@webtoon.com</span></a> </span><span class="s22">으로</span><span class="s21"> </span><span class="s22">신청</span></p>
+<p class="p13"><span class="s17">🚃</span></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626"><span class="s4">찾아오는</span><span class="s24"> </span><span class="s4">방법</span></h2>
+<p class="p20"><span class="s1">①</span></p>
+<p class="p21"><span class="s25">추천</span><span class="s26"> </span><span class="s17">도에이</span><span class="s27"> </span><span class="s17">오에도선</span></p>
+<p class="p22"><span class="s12">롯폰기역</span><span class="s28"> 8</span><span class="s12">번</span><span class="s28"> </span><span class="s12">출구</span><span class="s28"> → </span><span class="s12">지하통로</span><span class="s28"> </span><span class="s12">직결</span></p>
+<p class="p23"><span class="s12">나리타</span><span class="s29"> </span><span class="s12">공항</span><span class="s29">: JR </span><span class="s12">나리타</span><span class="s29"> </span><span class="s12">익스프레스</span><span class="s29"> → </span><span class="s12">신주쿠역</span><span class="s29"> → </span><span class="s12">오에도선</span><span class="s29"> </span><span class="s12">롯폰기역</span></p>
+<p class="p20"><span class="s1">②</span></p>
+<p class="p21"><span class="s17">도쿄</span><span class="s27"> </span><span class="s17">메트로</span><span class="s27"> </span><span class="s17">히비야선</span></p>
+<p class="p22"><span class="s12">롯폰기역</span><span class="s28"> → </span><span class="s12">지하통로</span><span class="s28"> </span><span class="s12">직결</span></p>
+<p class="p23"><span class="s12">하네다</span><span class="s29"> </span><span class="s12">공항</span><span class="s29">: </span><span class="s12">게이큐선</span><span class="s29"> → </span><span class="s12">다이몬역</span><span class="s29"> → </span><span class="s12">오에도선</span><span class="s29"> </span><span class="s12">롯폰기역</span><span class="s30"><br>
+</span><span class="s29">BASECAMP TOKYO: JR </span><span class="s12">야마노테선</span><span class="s29"> </span><span class="s12">메구로역</span><span class="s29"> → </span><span class="s12">에비스역</span><span class="s29"> → </span><span class="s12">히비야선</span><span class="s29"> </span><span class="s12">롯폰기역</span><span class="s30"><br>
+</span><span class="s29">※ </span><span class="s12">지하통로에</span><span class="s29"> </span><span class="s12">계단</span><span class="s29"> </span><span class="s12">있음</span><span class="s29">. </span><span class="s12">휠체어</span><span class="s29">·</span><span class="s12">유모차는</span><span class="s29"> </span><span class="s12">오에도선</span><span class="s29"> </span><span class="s12">권장</span></p>
+<p class="p20"><span class="s1">③</span></p>
+<p class="p21"><span class="s17">도쿄</span><span class="s27"> </span><span class="s17">메트로</span><span class="s27"> </span><span class="s17">지요다선</span></p>
+<p class="p22"><span class="s12">노기사카역</span><span class="s28"> 3</span><span class="s12">번</span><span class="s28"> </span><span class="s12">출구</span><span class="s28"> → </span><span class="s12">도보</span><span class="s28"> </span><span class="s12">약</span><span class="s28"> 3</span><span class="s12">분</span></p>
+<p class="p20"><span class="s1">④</span></p>
+<p class="p21"><span class="s17">도쿄</span><span class="s27"> </span><span class="s17">메트로</span><span class="s27"> </span><span class="s17">난보쿠선</span></p>
+<p class="p22"><span class="s12">롯폰기잇쵸메역</span><span class="s28"> 1</span><span class="s12">번</span><span class="s28"> </span><span class="s12">출구</span><span class="s28"> → </span><span class="s12">도보</span><span class="s28"> </span><span class="s12">약</span><span class="s28"> 10</span><span class="s12">분</span></p>
+<p class="p13"><span class="s17">🏢</span></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626"><span class="s4">건물</span><span class="s24"> </span><span class="s4">입장</span><span class="s24"> </span><span class="s4">안내</span></h2>
+<p class="p24"><span class="s4">※ 22</span><span class="s31">시</span><span class="s4">~6</span><span class="s31">시</span><span class="s4"> </span><span class="s31">새벽</span><span class="s4"> </span><span class="s31">기준</span></p>
+<p class="p20"><span class="s1">1</span></p>
+<p class="p25"><span class="s17">1F </span><span class="s32">또는</span><span class="s17"> B1F · 24</span><span class="s32">시간</span></p>
+<p class="p22"><span class="s28">QR</span><span class="s12">코드로</span><span class="s28"> </span><span class="s12">미드타운</span><span class="s28"> </span><span class="s12">빌딩</span><span class="s28"> </span><span class="s12">입장</span></p>
+<p class="p23"><span class="s12">새벽</span><span class="s29">(22</span><span class="s12">시</span><span class="s29">~6</span><span class="s12">시</span><span class="s29">): </span><span class="s12">가장</span><span class="s29"> </span><span class="s12">오른쪽</span><span class="s29"> </span><span class="s12">문</span><span class="s29"> </span><span class="s12">옆</span><span class="s29"> </span><span class="s12">단말기에</span><span class="s29"> QR</span><span class="s12">코드</span><span class="s29"> </span><span class="s12">터치</span><span class="s29"> / </span><span class="s12">퇴관</span><span class="s29">: </span><span class="s12">문</span><span class="s29"> </span><span class="s12">아래</span><span class="s29"> </span><span class="s12">잠금장치</span><span class="s29"> </span><span class="s12">해제</span></p>
+<p class="p20"><span class="s1">2</span></p>
+<p class="p21"><span class="s17">엘리베이터</span><span class="s27"> B</span></p>
+<p class="p26"><span class="s33">엘리베이터</span><span class="s12"> B</span><span class="s33">로</span><span class="s12"> 11F </span><span class="s33">또는</span><span class="s12"> 12F </span><span class="s33">이동</span></p>
+<p class="p20"><span class="s1">3</span></p>
+<p class="p21"><span class="s17">새벽</span><span class="s27"> </span><span class="s17">출입구</span><span class="s27"> </span><span class="s17">제한</span></p>
+<p class="p22"><span class="s12">새벽에는</span><span class="s28"> </span><span class="s12">지정</span><span class="s28"> </span><span class="s12">출입구</span><span class="s28"> 1</span><span class="s12">곳만</span><span class="s28"> </span><span class="s12">이용</span><span class="s28"> </span><span class="s12">가능</span></p>
+<p class="p11"><span class="s12">11F: </span><span class="s13">여성</span><span class="s12"> </span><span class="s13">화장실</span><span class="s12"> </span><span class="s13">근처</span><span class="s12"> </span><span class="s13">출입구</span><span class="s12"> / 12F: </span><span class="s13">중앙</span><span class="s12"> </span><span class="s13">출입구</span></p>
+<p class="p27"><span class="s17">ℹ</span></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626"><span class="s4">기본</span><span class="s24"> </span><span class="s4">정보</span></h2>
+<p class="p28"><span class="s12">건물</span></p>
+<p class="p26"><span class="s12">Tokyo Midtown Tower</span></p>
+<p class="p28"><span class="s12">층수</span></p>
+<p class="p26"><span class="s12">11F / 12F</span></p>
+<p class="p28"><span class="s12">입퇴관</span></p>
+<p class="p26"><span class="s12">365</span><span class="s33">일</span><span class="s12"> 24</span><span class="s33">시간</span></p>
+<p class="p22"><span class="s28">※22</span><span class="s12">시</span><span class="s28">~6</span><span class="s12">시</span><span class="s28"> </span><span class="s12">출입구</span><span class="s28"> </span><span class="s12">제한</span></p>
+<p class="p29"><span class="s34">런치</span><span class="s12">·</span><span class="s34">카페</span><span class="s12"> (11F)</span></p>
+<p class="p26"><span class="s33">런치</span><span class="s12"> 11:30–13:30</span></p>
+<p class="p26"><span class="s33">카페</span><span class="s12"> 09:00–17:30</span></p>
+<p class="p29"><span class="s12">WIFI</span></p>
+<p class="p26"><span class="s12">connect_wlan</span></p>
+<p class="p28"><span class="s12">결제</span></p>
+<p class="p26"><span class="s12">AirPAY (Naver Pay, Kakao Pay, PayPay </span><span class="s33">등</span><span class="s12">)</span></p>
+<p class="p13"><span class="s17">📞</span></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626"><span class="s4">담당자</span><span class="s24"> </span><span class="s4">연락처</span></h2>
+<p class="p30"><span class="s17">✉️</span></p>
+<p class="p31"><span class="s4">출장</span><span class="s35"> </span><span class="s4">지원</span><span class="s35"> (</span><span class="s4">한</span><span class="s35">·</span><span class="s4">일</span><span class="s35">·</span><span class="s4">영</span><span class="s35">)</span></p>
+<p class="p32"><span class="s4"><a href="mailto:dl_ldf_shucchou@webtoon.com">dl_ldf_shucchou@webtoon.com<span class="s36"></span></a></span></p>
+<p class="p30"><span class="s17">🏢</span></p>
+<p class="p31"><span class="s4">게스트카드</span><span class="s35">·</span><span class="s4">오피스</span><span class="s35"> </span><span class="s4">신청</span></p>
+<p class="p32"><span class="s4"><a href="mailto:dl_ldf_workplace@webtoon.com">dl_ldf_workplace@webtoon.com<span class="s36"></span></a></span></p>
+<p class="p13"><span class="s17">🍽</span></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Apple SD Gothic Neo'; color: #262626; -webkit-text-stroke: #262626"><span class="s24">LDF </span><span class="s4">직원</span><span class="s24"> </span><span class="s4">추천</span><span class="s24"> </span><span class="s4">도쿄</span><span class="s24"> </span><span class="s4">맛집</span></h2>
+<p class="p33"><span class="s37">LDF </span><span class="s4">직원들이</span><span class="s37"> </span><span class="s4">직접</span><span class="s37"> </span><span class="s4">다녀온</span><span class="s37"> </span><span class="s4">맛집</span><span class="s37"> </span><span class="s4">리스트입니다</span><span class="s37">.</span><span class="s16"><br>
+</span><span class="s37">Google Maps</span><span class="s4">에서</span><span class="s37"> </span><span class="s4">위치와</span><span class="s37"> </span><span class="s4">리뷰를</span><span class="s37"> </span><span class="s4">확인하세요</span><span class="s37">!</span></p>
+<p class="p34"><span class="s38"><a href="https://maps.app.goo.gl/iwQwfeNsKjYmT63i8?g_st=i">🗺<span class="s16"> </span><span class="s39">맛집</span><span class="s16"> </span><span class="s39">리스트</span><span class="s16"> </span><span class="s39">보기</span></a></span></p>
+<p class="p35"><span class="s5">© 2026 NAVER / LINE Digital Frontier · JAPAN </span><span class="s40">출장자</span><span class="s5"> </span><span class="s40">가이드</span></p>
 </body>
 </html>
